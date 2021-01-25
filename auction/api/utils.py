@@ -1,5 +1,7 @@
 from web3 import Web3
 
+# get hash from the json file and write it on the ethereum blockchain ropsten
+
 def sendTransaction(message):
 
     w3 = Web3(Web3.HTTPProvider('https://ropsten.infura.io/v3/cb3427bf216548ba96157079ddac0427'))

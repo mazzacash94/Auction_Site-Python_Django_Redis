@@ -7,7 +7,11 @@ from datetime import timedelta
 import json, redis
 from django.contrib.auth.decorators import login_required
 
+# connect to redis server
+
 client=redis.StrictRedis(host='127.0.0.1', port=6379, password='',db=0)
+
+# homepage with active and expired orders
 
 def home(request):
 
@@ -34,6 +38,8 @@ def home(request):
 
     return render(request, "index.html", {"auctionsActive":auctionsActive,"auctionsExpired":auctionsExpired, "auctionsLenght":auctionsLenght})
 
+# page where you can upload an image for describing your auction and enter informations about it
+
 @login_required()
 def publishAuction(request):
 
@@ -48,7 +54,7 @@ def publishAuction(request):
             auction=form.save(commit=False)
             auction.advertiser=user
             auction.startDate=datetime.datetime.now()
-            auction.endDate=auction.startDate+timedelta(minutes=2)
+            auction.endDate=auction.startDate+timedelta(minutes=2) # it's only for test 2 minutes, it can be any value
             auction.endPrice=request.POST.get("startPrice")
             auction.save()
             client.lpush(f"{auction.title}",f"{currentDate} - Auction starts with the price of {auction.startPrice}$!")
@@ -59,6 +65,8 @@ def publishAuction(request):
             form=auctionForm()
 
     return render(request, "publish.html", {"form":form})
+
+# popup page where you can bid for auction and different kind of message if you don't comply certain conditions
 
 @login_required()
 def bid(request, id):
@@ -105,6 +113,8 @@ def bid(request, id):
 
     return render(request, "bid.html", {"form":form, "auction":auction, "endDateFormat":endDateFormat})
 
+
+# page where you can find how many auctions you have won or published and the infos about them, you can also download a Json file (stored in report path of the project) in which are info about all the auctions completed on the site
 
 def profile(request):
 

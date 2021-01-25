@@ -27,9 +27,13 @@ class Auction(models.Model):
 
         return self.title
 
+    # get id of the auction to connect the popup page for bidding in the homepage
+
     def get_absolute_url(self):
 
         return reverse("auction_detail", kwargs={"id":self.id})
+
+    # generate json with all the info about auctions
 
     def auctionCompleted(self,winner,advertiser):
 
@@ -52,6 +56,8 @@ class Auction(models.Model):
         profileAdvertiser.save()
         self.save()
         self.writeOnChain(jsonOrder)
+
+    # generate hash of the json having infos about the auction and write it on the ethereum ropsten blockchain
 
     def writeOnChain(self,json):
 
