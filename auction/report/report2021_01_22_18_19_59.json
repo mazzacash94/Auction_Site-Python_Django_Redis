@@ -1,0 +1,12 @@
+[
+	[
+		"User: blockchain",
+		"Auctions Won: {\"Advertiser\": \"start2impact\", \"Winner\": \"blockchain\", \"Title\": \"sadsa\", \"Text\": \"sadsad\", \"startPrice\": 23.0, \"endPrice\": 56.0, \"startDate\": \"2021-01-22 15:22:08.503488+00:00\", \"endDate\": \"2021-01-22 15:24:08.502634+00:00\"}",
+		"Auctions Published: {\"Advertiser\": \"blockchain\", \"Winner\": \"start2impact\", \"Title\": \"sadasda\", \"Text\": \"asdadasd\", \"startPrice\": 23.0, \"endPrice\": 50.0, \"startDate\": \"2021-01-22 15:08:47.240613+00:00\", \"endDate\": \"2021-01-22 15:10:47.239665+00:00\"}{\"Advertiser\": \"blockchain\", \"Winner\": \"start2impact\", \"Title\": \"sadasd\", \"Text\": \"sdadasda\", \"startPrice\": 345.0, \"endPrice\": 500.0, \"startDate\": \"2021-01-22 15:18:05.049211+00:00\", \"endDate\": \"2021-01-22 15:20:05.048061+00:00\"}"
+	],
+	[
+		"User: start2impact",
+		"Auctions Won: {\"Advertiser\": \"blockchain\", \"Winner\": \"start2impact\", \"Title\": \"sadasda\", \"Text\": \"asdadasd\", \"startPrice\": 23.0, \"endPrice\": 50.0, \"startDate\": \"2021-01-22 15:08:47.240613+00:00\", \"endDate\": \"2021-01-22 15:10:47.239665+00:00\"}{\"Advertiser\": \"blockchain\", \"Winner\": \"start2impact\", \"Title\": \"sadasd\", \"Text\": \"sdadasda\", \"startPrice\": 345.0, \"endPrice\": 500.0, \"startDate\": \"2021-01-22 15:18:05.049211+00:00\", \"endDate\": \"2021-01-22 15:20:05.048061+00:00\"}",
+		"Auctions Published: {\"Advertiser\": \"start2impact\", \"Winner\": \"blockchain\", \"Title\": \"sadsa\", \"Text\": \"sadsad\", \"startPrice\": 23.0, \"endPrice\": 56.0, \"startDate\": \"2021-01-22 15:22:08.503488+00:00\", \"endDate\": \"2021-01-22 15:24:08.502634+00:00\"}"
+	]
+]
