@@ -4,7 +4,7 @@ from .models import Auction, Profile
 from django.contrib import messages
 import datetime
 from datetime import timedelta
-import json, redis
+import json, redis, os
 from django.contrib.auth.decorators import login_required
 
 # connect to redis server
@@ -132,8 +132,17 @@ def profile(request):
             timestamp = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
             dataAuctions.append(data)
 
-        with open("report/report" + timestamp + ".json", "w") as outfile:
+        if os.path.exists("report"):
 
-            json.dump(dataAuctions, outfile, indent="\t")
+            with open("report/report" + timestamp + ".json", "w") as outfile:
+
+                json.dump(dataAuctions, outfile, indent="\t")
+
+        else:
+
+            os.mkdir("report")
+            with open("report/report" + timestamp + ".json", "w") as outfile:
+
+                json.dump(dataAuctions, outfile, indent="\t")
 
     return render(request, "profile.html", {"profile":profile})
