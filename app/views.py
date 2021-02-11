@@ -70,7 +70,7 @@ def home(request):
             auction = form.save(commit=False)
             auction.advertiser = user
             auction.startDate = datetime.datetime.now()
-            auction.endDate = auction.startDate+timedelta(seconds=30)
+            auction.endDate = auction.startDate+timedelta(minutes=1)
             auction.endPrice = request.POST.get("startPrice")
             auction.save()
             client.lpush(f"{auction.title}", f"{currentDate} - Auction starts with the price of {auction.startPrice}$!")

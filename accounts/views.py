@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout as django_logout
 from django.contrib import messages
 from .forms import registrationForm
-from django.contrib.auth.models import User
 
 
 def logIn(request):
@@ -35,9 +34,6 @@ def registration(request):
         if form.is_valid():
 
             form.save()
-            users = User.objects.order_by("-date_joined")
-            lastUser = User.objects.get(username=users[0])
-            Profile.objects.create(user=lastUser)
             return redirect('../')
 
         else:
