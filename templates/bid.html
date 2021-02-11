@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--
+Tinker CSS Template
+https://templatemo.com/tm-506-tinker
+-->
+        <title>BlockChain Auctions</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        <link rel="icon" href="{% static 'img/favicon.ico' %}"/>
+        <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/fontAwesome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/hero-slider.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+
+        <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+        <script language="Javascript">
+            function popup(url, h, w) {
+                var popTop = Math.floor((screen.height-h)/2);
+                var popLeft = Math.floor((screen.width-w)/2);
+                window.open(url, "popup", "height="+h+",width="+w+",top="+popTop+",left="+popLeft+",toolbar=no,menubar=no,status=no,scrollbars=no")
+            }
+        </script>
+        <style>
+            #auctionimg {
+                width: 200px;
+                height: 200px;
+                }
+
+            #auctionimg img {
+                width: 100%;
+                height:100%;
+                object-fit: cover;
+                }
+
+            #box-shadow {
+                background-color: rgba(255,255,255,0.9);
+                position: absolute;
+                top: 50px;
+                left: 50px;
+                width: 300px;
+                height: auto;
+                border: Solid 1px #CCCCCC;
+                border-radius: 10px 10px 10px 10px;
+                }
+
+            p {
+                color: black;
+                word-break: break-all;
+                padding-right: 10px;
+                padding-left: 10px;
+                }
+
+            p h4{
+                font-size: 40px;
+                font-style: bold;
+                padding-right: 10px;
+                }
+
+        </style>
+    </head>
+
+<body style="background-image: url({% static 'img/bid.jpg' %});" onunload="javascript:window.opener.location.reload ();">
+    <div id="box-shadow"><br><br>
+        <center>
+        {% if auction.winner is None %}
+        <p><h4>Advertiser : </h4></p>
+        <p>{{auction.advertiser}}</p>
+        {% elif auction.winner is not None and auction.status == True %}
+        <p><h4>Highest Bidder :</h4></p>
+        <p>{{auction.winner}}</p>
+        {% elif auction.winner is not None and auction.status == False %}
+        <p><h4>Winner :</h4></p>
+        <p>{{auction.winner}}</p>
+        {% endif %}
+        <hr>
+        <p><h4>Description :</h4></p>
+        <p>{{auction.text}}</p>
+        <hr>
+        <p><h4>Time Left:</h4></p>
+        <p id="demo">Time Left:</p>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <input name="endPrice" type="number" placeholder="Enter the amount..." />
+            <hr>
+            <button type="submit" class="btn btn-primary">Place your Bid!</button>
+        </form>
+        <br>
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">{{message}}</div>
+        {% endfor %}
+        </center>
+    </div>
+    <script>
+                // Set the date we're counting down to
+var countDownDate = new Date("{{endDateFormat}}").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is over, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+            </script>
+
+    <script type="text/javascript">
+        var delay_popup = 5000;
+        setTimeout("document.getElementById('overlay').style.display='block'", delay_popup);
+    </script>
+</body>
